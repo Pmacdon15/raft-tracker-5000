@@ -50,13 +50,19 @@ export async function fetchTrips(tripCurrent: boolean, currentPage: number) {
   return { trips, hasMore, totalPages };
 }
 
+function addHours(date: Date, hours: number): Date {
+  const newDate = new Date(date);
+  newDate.setHours(newDate.getHours() + hours);
+  return newDate;
+}
+
 export async function addRaftToWaterDB(
   validatedFields: typeof schemaAddRaft._type,
   email: string | null | undefined
 ) {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const lateCheckInTime = validatedFields.lateCheckInTime
-    ? new Date(new Date().toISOString().split('T')[0] + 'T' + validatedFields.lateCheckInTime + 'Z')
+    ? addHours(new Date(new Date().toISOString().split('T')[0] + 'T' + validatedFields.lateCheckInTime + 'Z'), Number(process.env.OFFSET || 0))
     : null;
 
   const [result] = await sql`
