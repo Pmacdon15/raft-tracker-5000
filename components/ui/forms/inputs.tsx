@@ -1,5 +1,6 @@
 import { getRaftType } from "@/lib/utils/functions";
 import { GuestOption, InputsProps } from "@/types/types";
+import { useState } from "react";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 
@@ -12,8 +13,11 @@ export default function Inputs({
     raftType,
     setRaftType,
     unitNumber,
-    setUnitNumber
+    setUnitNumber,
+    // setLateCheckInTime
 }: InputsProps) {
+
+    const [guestHasLeft, setGuestHasLeft] = useState(false)
 
     return (
         <div className="flex flex-col md:flex-row gap-4">
@@ -74,6 +78,30 @@ export default function Inputs({
                     placeholder="Unit Number"
                     required
                 />
+                <div className="flex items-center gap-2">
+                    <label className="flex gap-2 items-center">
+                        Guest has already left
+                        <input
+                            type="checkbox"
+                            className="mr-2"
+                            onChange={(e) => setGuestHasLeft(e.target.checked)}
+                        />
+                    </label>
+                    {guestHasLeft && (
+                        <input
+                            // onChange={(e) => {
+                            //     const [hours, minutes] = e.target.value.split(':');
+                            //     const date = new Date();
+                            //     date.setHours(parseInt(hours), parseInt(minutes));
+                            //     setLateCheckInTime(date);
+                            // }}    
+                            name="late-check-in-time"                        
+                            aria-label="Time"
+                            type="time"
+                            className="border border-gray-300 rounded-sm h-10 p-2"
+                        />
+                    )}
+                </div>
             </div>
             <button
                 disabled={isPending}

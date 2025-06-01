@@ -70,6 +70,7 @@ export interface InputsProps {
   setRaftType: (raftType: RaftOption | null) => void;
   unitNumber: string;
   setUnitNumber: (unitNumber: string) => void;
+  // setLateCheckInTime: (laterCheckInTime: Date) => void;
 }
 export interface BookingDetails {
   booking_id: number;

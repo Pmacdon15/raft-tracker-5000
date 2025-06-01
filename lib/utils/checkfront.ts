@@ -21,7 +21,7 @@ export async function fetchBookings(date: string): Promise<BookingWithTime[]> {
   );
 
   const data: any = await response.json();
-  console.log("Bookings", data)
+  // console.log("Bookings", data)
   if (!data["booking/index"]) {
     console.log("No bookings found for the specified date.");
     return [];
@@ -43,7 +43,7 @@ export async function fetchBookings(date: string): Promise<BookingWithTime[]> {
       );
 
       const invoiceData: InvoiceData = await invoiceResponse.json();
-      console.log("Invoice data: ", invoiceData)
+      // console.log("Invoice data: ", invoiceData)
       const html = invoiceData.booking.invoice.html;
       const timeRegex = /<i class='fa fa-clock-o'><\/i>\s*(.*?)\s*<\/td>/;
       const match = html.match(timeRegex);

@@ -6,12 +6,21 @@ import { useState } from 'react';
 import { BookingData, GuestData, RaftOption } from "@/types/types";
 import { boatOptions } from "@/lib/utils/rafts";
 import Inputs from "./inputs";
+// import { z } from "zod";
+
+// export const schemaAddRaft = z.object({
+//     guestName: z.string(),
+//     raftType: z.string(),
+//     unitNumber: z.number(),
+//     lateCheckInTime: z.date(),
+// });
 
 export default function DepartureForm() {
     const [selectedGuest, setSelectedGuest] = useState<{ bookingId: number | null; name: string } | null>(null);
     const [raftType, setRaftType] = useState<RaftOption | null>(null);
     const [unitNumber, setUnitNumber] = useState('');
     const [date, setDate] = useState(new Date())
+    // const [lateChkInTime, setLatCheckInTime] = useState<Date | null>(null)
 
     const { data, isLoading, isError, refetch } = useGetBookings(date);
     const { mutate, isPending } = useAddRaftToWater();
@@ -48,6 +57,9 @@ export default function DepartureForm() {
                     formData.append('guest-name', selectedGuest?.name || '');
                     formData.append('raft-type', raftType?.value || '');
                     formData.append('unit-number', unitNumber);
+                    // formData.append('late-check-in-time', lateChkInTime?.toISOString() || '');
+                    console.log("late-check-in-time", formData.get("late-check-in-time"));
+
                     mutate(formData);
                     setSelectedGuest(null);
                     setRaftType(null);
@@ -65,6 +77,7 @@ export default function DepartureForm() {
                     setRaftType={setRaftType}
                     unitNumber={unitNumber}
                     setUnitNumber={setUnitNumber}
+                // setLateCheckInTime={setLatCheckInTime}
                 />
             </form>
         </MainContainer>
