@@ -4,7 +4,7 @@ export const schemaAddRaft = z.object({
     guestName: z.string(),
     raftType: z.string(),
     unitNumber: z.number(),
-    lateCheckInTime: z.string().regex(/^\d{2}:\d{2}$/).optional().or(z.literal("")), 
+    lateCheckInTime: z.string().regex(/^\d{2}:\d{2}$/).nullable().optional(),
 });
 
 export const schemaRemoveRaft = z.object({

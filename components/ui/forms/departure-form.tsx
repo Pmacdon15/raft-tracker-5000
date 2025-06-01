@@ -57,9 +57,8 @@ export default function DepartureForm() {
                     formData.append('guest-name', selectedGuest?.name || '');
                     formData.append('raft-type', raftType?.value || '');
                     formData.append('unit-number', unitNumber);
-                    // formData.append('late-check-in-time', lateChkInTime?.toISOString() || '');
-                    console.log("late-check-in-time", formData.get("late-check-in-time"));
-
+                    // // formData.append('late-check-in-time', lateChkInTime?.toISOString() || '');
+                    // console.log("late-check-in-time", formData.get("late-check-in-time"));
                     mutate(formData);
                     setSelectedGuest(null);
                     setRaftType(null);

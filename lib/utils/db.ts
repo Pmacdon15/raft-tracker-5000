@@ -55,6 +55,9 @@ export async function addRaftToWaterDB(
   email: string | null | undefined
 ) {
   const sql = neon(`${process.env.DATABASE_URL}`);
+  const lateCheckInTime = validatedFields.lateCheckInTime
+    ? new Date(new Date().toISOString().split('T')[0] + 'T' + validatedFields.lateCheckInTime + 'Z')
+    : null;
 
   const [result] = await sql`
             INSERT INTO rafts_on_water (
@@ -69,7 +72,7 @@ export async function addRaftToWaterDB(
                 (SELECT id FROM raft_types WHERE name = ${validatedFields.raftType}),
                 ${validatedFields.unitNumber},
                 (SELECT id FROM users WHERE email = ${email}),
-                NOW()
+                ${lateCheckInTime || sql`NOW()`}
                 )
                 RETURNING *;
                 `;

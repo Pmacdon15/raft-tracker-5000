@@ -13,8 +13,7 @@ export default function Inputs({
     raftType,
     setRaftType,
     unitNumber,
-    setUnitNumber,
-    // setLateCheckInTime
+    setUnitNumber,   
 }: InputsProps) {
 
     const [guestHasLeft, setGuestHasLeft] = useState(false)
@@ -88,13 +87,7 @@ export default function Inputs({
                         />
                     </label>
                     {guestHasLeft && (
-                        <input
-                            // onChange={(e) => {
-                            //     const [hours, minutes] = e.target.value.split(':');
-                            //     const date = new Date();
-                            //     date.setHours(parseInt(hours), parseInt(minutes));
-                            //     setLateCheckInTime(date);
-                            // }}    
+                        <input                            
                             name="late-check-in-time"                        
                             aria-label="Time"
                             type="time"

@@ -21,15 +21,8 @@ export async function addRaftToWater(formData: FormData) {
 
     console.log("Late Check in Time: ", validatedFields.data?.lateCheckInTime, formData.get("late-check-in-time"))
 
-    if (!validatedFields.success) throw new Error("Invalid form data");
-
-    // If you need a Date object:
-    let lateCheckInDate: Date | undefined = undefined;
-    if (validatedFields.data.lateCheckInTime) {
-        const [hours, minutes] = validatedFields.data.lateCheckInTime.split(':');
-        lateCheckInDate = new Date();
-        lateCheckInDate.setHours(Number(hours), Number(minutes), 0, 0);
-    }
+    if (!validatedFields.success) throw new Error("Invalid form data");   
+    
     try {
         const [result] = await addRaftToWaterDB(validatedFields.data, email)
 
