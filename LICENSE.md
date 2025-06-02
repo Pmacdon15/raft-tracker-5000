@@ -1,6 +1,6 @@
 # Non-Commercial License
 
-Copyright (c) 2025 Your-Next-Site
+Copyright (c) 2025 Pmacdon15
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify, merge, publish, distribute, and/or sublicense the Software for non-commercial purposes only, subject to the following conditions:
 
